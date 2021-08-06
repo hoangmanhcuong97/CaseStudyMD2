@@ -69,6 +69,7 @@ public class ManagerProduct {
         for (int i = 0; i < products.size(); i++) {
             if(name.equals(products.get(i).getNameProduct())){
                 products.remove(i);
+                break;
             }
         }
     }
@@ -96,4 +97,6 @@ public class ManagerProduct {
             System.out.println(a);
         }
     }
+
+
 }

@@ -1,35 +1,35 @@
 package model;
 
 public class Account {
-    private String userName;
-    private int passWord;
+    private String username;
+    private int password;
 
-    public Account(String userName, int passWord) {
-        this.userName = userName;
-        this.passWord = passWord;
+    public Account(String username, int password) {
+        this.username = username;
+        this.password = password;
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public int getPassWord() {
-        return passWord;
+        return password;
     }
 
-    public void setPassWord(int passWord) {
-        this.passWord = passWord;
+    public void setPassWord(int password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
         return "Account{" +
-                "userName='" + userName + '\'' +
-                ", passWord=" + passWord +
+                "username='" + username + '\'' +
+                ", password=" + password +
                 '}';
     }
 }
