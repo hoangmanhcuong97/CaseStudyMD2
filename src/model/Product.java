@@ -44,7 +44,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "\n\tProduct{" +
+        return "\nProduct{" +
                 "nameProduct='" + nameProduct + '\'' +
                 ", describeProduct='" + describeProduct + '\'' +
                 ", priceProduct=" + priceProduct +

@@ -21,9 +21,7 @@ public class FileManagerProduct {
         if(file.length() > 0){
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            Object o = ois.readObject();
-            readProduct = (List<Product>) o;
-            System.out.println(readProduct);
+            readProduct = (List<Product>) ois.readObject();
             ois.close();
             fis.close();
         }

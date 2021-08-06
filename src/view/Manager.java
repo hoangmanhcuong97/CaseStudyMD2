@@ -1,9 +1,8 @@
 package view;
 
 import controller.ManagerListProduct;
-import storage.FileManagerListProduct;
+import controller.ManagerProduct;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Manager {
@@ -21,6 +20,8 @@ public class Manager {
                     managerListProduct();
                     break;
                 case 2:
+                    managerMethodProduct();
+                    break;
             }
         }
     }
@@ -28,13 +29,6 @@ public class Manager {
     static void managerListProduct(){
         Scanner scanner = new Scanner(System.in);
         ManagerListProduct managerListProduct = new ManagerListProduct();
-        try {
-            managerListProduct.setProductList(FileManagerListProduct.readFileListProduct());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
         int chose = -1;
         while (chose != 0){
@@ -55,13 +49,15 @@ public class Manager {
                     }
                     break;
                 case 2:
+                    Scanner scanner1 = new Scanner(System.in);
                     System.out.println("Nhap ten can xoa:");
-                    String name = scanner.nextLine();
+                    String name = scanner1.nextLine();
                     managerListProduct.deleteListProduct(name);
                     break;
                 case 3:
+                    Scanner scanner2 = new Scanner(System.in);
                     System.out.println("Nhap ten can sua:");
-                    String name1 = scanner.nextLine();
+                    String name1 = scanner2.nextLine();
                     managerListProduct.editListProduct(name1);
                     break;
                 case 4:
@@ -69,6 +65,50 @@ public class Manager {
                     break;
                 case 5:
                     managerListProduct.showAll();
+                    break;
+            }
+        }
+    }
+
+    static void managerMethodProduct(){
+        Scanner sc = new Scanner(System.in);
+        ManagerProduct managerProduct = new ManagerProduct();
+
+        int chose = -1;
+        while (chose != 0){
+            System.out.println("Quan ly san pham");
+            System.out.println("1.Them san pham");
+            System.out.println("2.Xoa san pham");
+            System.out.println("3.Sua san pham");
+            System.out.println("4.Sap xep san pham theo gia");
+            System.out.println("5.Hien thi chi tiet san pham");
+            System.out.println("0.Thoat");
+            chose = sc.nextInt();
+            switch (chose){
+                case 1:
+                    System.out.println("Nhap so luong san pham muon them:");
+                    int number = sc.nextInt();
+                    for (int i = 0; i < number; i++) {
+                        managerProduct.addProduct();
+                    }
+                    break;
+                case 2:
+                    Scanner sc1 = new Scanner(System.in);
+                    System.out.println("Nhap ten san pham muon sua:");
+                    String name = sc1.nextLine();
+                    managerProduct.editProduct(name);
+                    break;
+                case 3:
+                    Scanner sc2 = new Scanner(System.in);
+                    System.out.println("Nhap ten san pham muon xoa:");
+                    String name1 = sc2.nextLine();
+                    managerProduct.deleteProduct(name1);
+                    break;
+                case 4:
+                    managerProduct.sortProduct();
+                    break;
+                case 5:
+                    managerProduct.showAll1();
                     break;
             }
         }

@@ -1,12 +1,22 @@
 package controller;
 
 import model.Product;
+import storage.FileManagerProduct;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ManagerProduct {
     private String nameTypeProduct;
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
+
+    {
+        try {
+            products = FileManagerProduct.readFileProduct();
+        }  catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public ManagerProduct() {
     }
@@ -55,6 +65,11 @@ public class ManagerProduct {
 
     public void addProduct() {
         products.add(creatProduct());
+        try {
+            FileManagerProduct.writeFileProduct(products);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void editProduct(String name) {
@@ -62,6 +77,11 @@ public class ManagerProduct {
             if(name.equals(products.get(i).getNameProduct())){
                 products.set(i, creatProduct());
             }
+        }
+        try {
+            FileManagerProduct.writeFileProduct(products);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -72,29 +92,31 @@ public class ManagerProduct {
                 break;
             }
         }
+        try {
+            FileManagerProduct.writeFileProduct(products);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void sortProduct() {
-        Collections.sort(products, new Comparator<Product>() {
+        products.sort(new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
                 return o1.getPriceProduct() > o2.getPriceProduct() ? -1 : 1;
             }
         });
     }
-//    public int findNameProduct(String nameProduct){
-//        int index = -1;
-//        for (int i = 0; i < products.size(); i++) {
-//            if(nameProduct.equals(products.get(i).getNameProduct())){
-//                index = i;
-//            }
-//        }
-//        return index;
-//    }
 
-    public static void showAll(ManagerProduct managerProduct){
-        for (Product a: managerProduct.getProducts()) {
-            System.out.println(a);
+
+    public void showAll1(){
+        try {
+            List<Product> products = FileManagerProduct.readFileProduct();
+            for (Product p : products) {
+                System.out.println(p);
+            }
+        }  catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
         }
     }
 

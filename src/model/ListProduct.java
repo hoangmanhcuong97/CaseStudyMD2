@@ -30,9 +30,7 @@ public class ListProduct implements Serializable {
 
     @Override
     public String toString() {
-        return "ListProduct{" +
-                "\ntypeProduct='" + typeProduct + '\'' +
-                ", totalNumber=" + totalNumber +
-                '}';
+        return "\ntypeProduct='" + typeProduct + '\'' +
+                ", totalNumber=" + totalNumber ;
     }
 }
