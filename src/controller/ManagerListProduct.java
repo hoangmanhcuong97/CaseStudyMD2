@@ -1,7 +1,9 @@
 package controller;
 
 import model.ListProduct;
+import storage.FileManagerListProduct;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ManagerListProduct  {
@@ -36,6 +38,11 @@ public class ManagerListProduct  {
     }
     public void addListProduct() {
         productList.add(creatListProduct());
+        try {
+            FileManagerListProduct.writeFileListProduct(productList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void editListProduct(String name) {
@@ -45,6 +52,11 @@ public class ManagerListProduct  {
                 break;
             }
         }
+        try {
+            FileManagerListProduct.writeFileListProduct1(productList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -53,6 +65,11 @@ public class ManagerListProduct  {
             if(name.equals(productList.get(i).getTypeProduct())){
                 productList.remove(i);
             }
+        }
+        try {
+            FileManagerListProduct.writeFileListProduct1(productList);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -66,9 +83,13 @@ public class ManagerListProduct  {
         });
     }
 
-    public static void showAll(ManagerListProduct managerListProduct){
-        for (ListProduct a: managerListProduct.getProductList()) {
-            System.out.println(a);
+    public void showAll(){
+        try {
+            FileManagerListProduct.readFileListProduct();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

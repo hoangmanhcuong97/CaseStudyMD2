@@ -7,6 +7,14 @@ import java.util.List;
 
 public class FileManagerListProduct {
     public static void writeFileListProduct(List<ListProduct> managerListProduct) throws IOException {
+        FileOutputStream fos = new FileOutputStream("ListProduct.txt",true);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(managerListProduct);
+        oos.close();
+        fos.close();
+    }
+
+    public static void writeFileListProduct1(List<ListProduct> managerListProduct) throws IOException {
         FileOutputStream fos = new FileOutputStream("ListProduct.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(managerListProduct);
