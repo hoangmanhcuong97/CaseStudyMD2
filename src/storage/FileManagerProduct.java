@@ -23,6 +23,7 @@ public class FileManagerProduct {
             ObjectInputStream ois = new ObjectInputStream(fis);
             Object o = ois.readObject();
             readProduct = (List<Product>) o;
+            System.out.println(readProduct);
             ois.close();
             fis.close();
         }

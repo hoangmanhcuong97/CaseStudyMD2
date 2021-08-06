@@ -1,8 +1,9 @@
 package model;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class ListProduct {
+
+public class ListProduct implements Serializable {
     private String typeProduct;
     private int totalNumber;
 
@@ -30,7 +31,7 @@ public class ListProduct {
     @Override
     public String toString() {
         return "ListProduct{" +
-                "typeProduct='" + typeProduct + '\'' +
+                "\ntypeProduct='" + typeProduct + '\'' +
                 ", totalNumber=" + totalNumber +
                 '}';
     }

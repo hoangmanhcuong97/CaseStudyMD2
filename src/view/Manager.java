@@ -3,6 +3,7 @@ package view;
 import controller.ManagerListProduct;
 import storage.FileManagerListProduct;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Manager {
@@ -27,6 +28,13 @@ public class Manager {
     static void managerListProduct(){
         Scanner scanner = new Scanner(System.in);
         ManagerListProduct managerListProduct = new ManagerListProduct();
+        try {
+            managerListProduct.setProductList(FileManagerListProduct.readFileListProduct());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         int chose = -1;
         while (chose != 0){
@@ -40,7 +48,11 @@ public class Manager {
             chose = scanner.nextInt();
             switch (chose){
                 case 1:
-                    managerListProduct.addListProduct();
+                    System.out.println("Nhap so san pham muon them");
+                    int number = scanner.nextInt();
+                    for (int i = 0; i < number; i++) {
+                        managerListProduct.addListProduct();
+                    }
                     break;
                 case 2:
                     System.out.println("Nhap ten can xoa:");
