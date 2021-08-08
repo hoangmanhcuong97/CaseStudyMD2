@@ -149,5 +149,27 @@ public class ManagerProduct {
             e.printStackTrace();
         }
     }
-
+    public void buyProduct(String nameProduct, int amount) {
+        for (Product p : products) {
+            if (p.getNameProduct().equals(nameProduct)) {
+                p.setNumberOfProduct(p.getNumberOfProduct() - amount);
+                break;
+            }
+        }
+        try {
+            FileManagerProduct.writeFileProduct(products);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public double countMoney(String nameProduct, int amount) {
+        double totalMoney = 0;
+        for (Product p : products) {
+            if (p.getNameProduct().equals(nameProduct)) {
+                totalMoney = amount * p.getPriceProduct();
+                break;
+            }
+        }
+        return totalMoney;
+    }
 }

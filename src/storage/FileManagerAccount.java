@@ -21,7 +21,6 @@ public class FileManagerAccount {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             readListAccount = (List<Account>) ois.readObject();
-            System.out.println(readListAccount);
             ois.close();
             fis.close();
         }

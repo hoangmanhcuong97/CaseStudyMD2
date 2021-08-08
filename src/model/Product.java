@@ -42,6 +42,14 @@ public class Product implements Serializable {
         this.priceProduct = priceProduct;
     }
 
+    public int getNumberOfProduct() {
+        return numberOfProduct;
+    }
+
+    public void setNumberOfProduct(int numberOfProduct) {
+        this.numberOfProduct = numberOfProduct;
+    }
+
     @Override
     public String toString() {
         return "\nProduct{" +
