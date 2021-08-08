@@ -1,8 +1,6 @@
 package storage;
 
 import model.Account;
-import model.ListProduct;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +20,7 @@ public class FileManagerAccount {
         if(file.length() > 0){
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            Object o = ois.readObject();
-            readListAccount = (List<Account>) o;
+            readListAccount = (List<Account>) ois.readObject();
             System.out.println(readListAccount);
             ois.close();
             fis.close();

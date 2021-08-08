@@ -106,6 +106,11 @@ public class ManagerProduct {
                 return o1.getPriceProduct() > o2.getPriceProduct() ? -1 : 1;
             }
         });
+        try {
+            FileManagerProduct.writeFileProduct(products);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -119,6 +124,30 @@ public class ManagerProduct {
             e.printStackTrace();
         }
     }
-
+    public void showNameListProduct(String nameListProduct){
+        try {
+            List<Product> products = FileManagerProduct.readFileProduct();
+            for (int i = 0; i < products.size(); i++) {
+                if (products.get(i).getNameProduct().contains(nameListProduct)){
+                    System.out.println(products.get(i));
+                }
+            }
+        }  catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void findNameProduct(String nameProduct){
+        try {
+            List<Product> products = FileManagerProduct.readFileProduct();
+            for (Product p: products) {
+                if(p.getNameProduct().equals(nameProduct)){
+                    System.out.println(p);
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

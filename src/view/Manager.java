@@ -1,17 +1,23 @@
 package view;
 
+import controller.ManagerAccount;
 import controller.ManagerListProduct;
 import controller.ManagerProduct;
 
 import java.util.Scanner;
 
 public class Manager {
-    public static void main(String[] args) {
+    public Manager() {
+    }
+
+    public void viewManager() {
+        ManagerAccount managerAccount = new ManagerAccount();
         int number = -1;
         while (number != 0){
             System.out.println("Menu:");
             System.out.println("1.Quan ly danh muc san pham");
             System.out.println("2.Quan ly san pham");
+            System.out.println("3.Xoa tai khoan");
             System.out.println("0.Thoat");
             Scanner sc = new Scanner(System.in);
             number = sc.nextInt();
@@ -21,6 +27,14 @@ public class Manager {
                     break;
                 case 2:
                     managerMethodProduct();
+                    break;
+                case 3:
+                    managerAccount.showListAccount();
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Nhap ten tai khoan can xoa");
+                    String name1 = scanner.nextLine();
+                    managerAccount.deleteAccount(name1);
+                    managerAccount.showListAccount();
                     break;
             }
         }
@@ -82,6 +96,7 @@ public class Manager {
             System.out.println("3.Sua san pham");
             System.out.println("4.Sap xep san pham theo gia");
             System.out.println("5.Hien thi chi tiet san pham");
+            System.out.println("6.Loc danh sach hien thi theo ten danh muc");
             System.out.println("0.Thoat");
             chose = sc.nextInt();
             switch (chose){
@@ -106,9 +121,16 @@ public class Manager {
                     break;
                 case 4:
                     managerProduct.sortProduct();
+                    managerProduct.showAll1();
                     break;
                 case 5:
                     managerProduct.showAll1();
+                    break;
+                case 6:
+                    Scanner sc3 = new Scanner(System.in);
+                    System.out.println("Nhap ten san pham can tim");
+                    String name2 = sc3.nextLine();
+                    managerProduct.showNameListProduct(name2);
                     break;
             }
         }
