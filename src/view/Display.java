@@ -8,6 +8,7 @@ public class Display {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ManagerAccount managerAccount = new ManagerAccount();
+        managerAccount.showListAccount();
         int chose = -1;
         while (chose != 0){
             System.out.println("1.Sign Account");
@@ -24,5 +25,6 @@ public class Display {
                     break;
             }
         }
+        
     }
 }

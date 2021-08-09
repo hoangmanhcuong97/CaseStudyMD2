@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagerAccount{
+public class ManagerAccount {
     private List<Account> accounts;
 
     {
         try {
             accounts = FileManagerAccount.readFileAccount();
-        }  catch (ClassNotFoundException | IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -35,7 +35,7 @@ public class ManagerAccount{
         this.accounts = accounts;
     }
 
-    public static Account creatAccount(){
+    public static Account creatAccount() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter username:");
         String name = sc.nextLine();
@@ -48,7 +48,7 @@ public class ManagerAccount{
         return account;
     }
 
-    public void addAccount(){
+    public void addAccount() {
         accounts.add(creatAccount());
         try {
             FileManagerAccount.writeFileAccount(accounts);
@@ -56,9 +56,10 @@ public class ManagerAccount{
             e.printStackTrace();
         }
     }
-    public void deleteAccount(String username){
+
+    public void deleteAccount(String username) {
         for (int i = 0; i < accounts.size(); i++) {
-            if(username.equals(accounts.get(i).getUserName())){
+            if (username.equals(accounts.get(i).getUserName())) {
                 accounts.remove(i);
                 break;
             }
@@ -70,28 +71,34 @@ public class ManagerAccount{
         }
     }
 
-    public void directional(String username, int password){
+    public void directional(String username, int password) {
         Manager manager = new Manager();
         Client client = new Client();
-        String  condition = "quanly";
+        String condition = "quanly";
         try {
             List<Account> accounts = FileManagerAccount.readFileAccount();
-            for (Account ac: accounts) {
-                if (ac.getUserName().equals(username) && ac.getPassWord() == password){
-                    if(ac.getUserName().contains(condition)){
-                        manager.viewManager();
-                    }else client.viewClient();
-                }else {
-                    System.out.println("Sai roi nhap lai di");
-                    login();
+            int indexAcc = -1;
+            for (int i = 0; i < accounts.size(); i++) {
+                if (accounts.get(i).getUserName().equals(username) && accounts.get(i).getPassWord() == password) {
+                    indexAcc = i;
                 }
             }
-        }  catch (ClassNotFoundException | IOException e) {
+            if (indexAcc != -1) {
+                if (accounts.get(indexAcc).getUserName().contains(condition)) {
+                    manager.viewManager();
+                } else {
+                    client.viewClient();
+                }
+            } else {
+                System.out.println("Sai roi nhap lai di");
+                login();
+            }
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void login(){
+    public void login() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Username");
         String username = scanner.nextLine();
@@ -102,13 +109,14 @@ public class ManagerAccount{
 
         directional(username, password);
     }
-    public void showListAccount(){
+
+    public void showListAccount() {
         try {
             List<Account> accounts = FileManagerAccount.readFileAccount();
-            for (Account a: accounts) {
+            for (Account a : accounts) {
                 System.out.println(a);
             }
-        }  catch (ClassNotFoundException | IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
